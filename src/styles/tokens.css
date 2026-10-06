@@ -1,0 +1,114 @@
+/* ==========================================================================
+   VibeVault design tokens
+   ========================================================================== */
+:root {
+  /* surfaces */
+  --bg: #090b10;
+  --bg-2: #0e1119;
+  --surface: #151923;
+  --surface-2: #1c2130;
+  --surface-3: #272e43;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --scrim: rgba(5, 6, 10, 0.72);
+
+  /* text */
+  --text: #f4f6fb;
+  --text-2: #b6bdcd;
+  --text-3: #8a93a8;
+
+  /* brand + semantic */
+  --accent: #7c5cff;
+  --accent-rgb: 124, 92, 255;
+  --success: #3ddc97;
+  --warn: #ffb84d;
+  --danger: #ff6378;
+  --info: #5fa8ff;
+  --focus: #ffffff;
+  --private: #ffb84d;
+
+  /* shape */
+  --r-xs: 0.25rem;
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1.1rem;
+  --r-xl: 1.75rem;
+  --r-full: 999px;
+
+  /* elevation */
+  --shadow-1: 0 0.25rem 0.9rem rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 1.1rem 3rem rgba(0, 0, 0, 0.55);
+  --glow: 0 0 0 1px rgba(var(--accent-rgb), 0.5), 0 0.5rem 2.5rem rgba(var(--accent-rgb), 0.35);
+
+  /* type */
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.2rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-hero: clamp(2.2rem, 4.6vw, 4.2rem);
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --t-fast: 140ms;
+  --t: 240ms;
+  --t-slow: 420ms;
+
+  /* layout */
+  --sidebar-w: 15rem;
+  --sidebar-w-rail: 4.75rem;
+  --gutter: clamp(1rem, 3vw, 3.5rem);
+  --topbar-h: 4.25rem;
+  --miniplayer-h: 4.75rem;
+  --card-poster-w: 11.5rem;
+  --card-land-w: 19rem;
+  --card-square-w: 11.5rem;
+  --row-gap: 1rem;
+  --scroll-pad: 6rem;
+}
+
+[data-theme='midnight'] {
+  --bg: #060a16;
+  --bg-2: #0a1122;
+  --surface: #101a33;
+  --surface-2: #17233f;
+  --surface-3: #22325a;
+}
+[data-theme='oled'] {
+  --bg: #000;
+  --bg-2: #050507;
+  --surface: #0d0e13;
+  --surface-2: #15171e;
+  --surface-3: #212430;
+}
+
+[data-density='compact'] {
+  --card-poster-w: 9.5rem;
+  --card-land-w: 15.5rem;
+  --card-square-w: 9.5rem;
+  --row-gap: 0.7rem;
+}
+
+/* ---- responsive root size: laptop → 1080p → 4K ---- */
+html { font-size: 15px; }
+@media (min-width: 1280px) { html { font-size: 16px; } }
+@media (min-width: 1920px) { html { font-size: 18px; } }
+@media (min-width: 2560px) { html { font-size: 24px; } }
+@media (min-width: 3200px) { html { font-size: 31px; } }
+
+/* ---- TV (10-foot) mode: everything larger, bigger focus, rail navigation ---- */
+html[data-mode='tv'] { font-size: 20px; }
+@media (min-width: 1920px) { html[data-mode='tv'] { font-size: 26px; } }
+@media (min-width: 2560px) { html[data-mode='tv'] { font-size: 34px; } }
+@media (min-width: 3200px) { html[data-mode='tv'] { font-size: 42px; } }
+
+[data-mode='tv'] {
+  --gutter: 3.5rem;
+  --card-poster-w: 12rem;
+  --card-land-w: 20rem;
+  --card-square-w: 12rem;
+  --text-3: #a3abbe;
+  --scroll-pad: 8rem;
+}

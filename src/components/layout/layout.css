@@ -1,0 +1,57 @@
+/* ========== App shell ========== */
+.shell { --sidebar-cell: var(--sidebar-w-rail); display: grid; grid-template-columns: var(--sidebar-cell) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); height: 100%; overflow: hidden; background: var(--bg); }
+@media (min-width: 1280px) { html[data-mode='desktop'] .shell { --sidebar-cell: var(--sidebar-w); } }
+.shell__content { position: relative; min-width: 0; min-height: 0; height: 100%; overflow: hidden; }
+.shell__main { height: 100%; overflow-y: auto; overflow-x: hidden; outline: none; padding-bottom: 2rem; scroll-behavior: auto; }
+.has-mini .shell__main { padding-bottom: calc(var(--miniplayer-h) + 2.5rem); }
+.page--top { padding-top: calc(var(--topbar-h) + 1.25rem); }
+.skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 999; padding: 0.6rem 1rem; border-radius: var(--r-full); background: #fff; color: #000; font-weight: 700; }
+.skip-link:focus { top: 1rem; }
+
+/* ========== Sidebar ========== */
+.sidebar { position: relative; z-index: 60; width: var(--sidebar-cell); }
+.sidebar__panel { position: absolute; inset: 0 auto 0 0; width: var(--sidebar-cell); display: flex; flex-direction: column; overflow: hidden; background: var(--bg-2); box-shadow: 1px 0 0 var(--line); transition: width var(--t) var(--ease), box-shadow var(--t); }
+.sidebar:hover .sidebar__panel, .sidebar:focus-within .sidebar__panel { width: var(--sidebar-w); box-shadow: 1px 0 0 var(--line), 1.5rem 0 3rem rgba(0, 0, 0, 0.5); }
+@media (min-width: 1280px) { html[data-mode='desktop'] .sidebar:hover .sidebar__panel, html[data-mode='desktop'] .sidebar:focus-within .sidebar__panel { box-shadow: 1px 0 0 var(--line); } }
+.sidebar__logo { display: flex; align-items: center; height: var(--topbar-h); padding-left: 1.35rem; flex: none; border-radius: var(--r-md); margin: 0 0.4rem; }
+.sidebar__list { flex: 1; padding-top: 0.5rem; }
+.sidebar__foot { padding-bottom: 0.8rem; }
+.sidebar__note { display: flex; gap: 0.45rem; width: calc(var(--sidebar-w) - 1.8rem); margin: 0.8rem 1.1rem 0; font-size: 0.72rem; line-height: 1.4; color: var(--text-3); }
+.sidebar__note svg { flex: none; margin-top: 0.15rem; color: var(--success); }
+.nav-item { display: flex; align-items: center; height: 3.1rem; margin: 0.15rem 0.6rem; border-radius: var(--r-md); color: var(--text-2); font-weight: 600; white-space: nowrap; position: relative; transition: background var(--t-fast), color var(--t-fast); }
+.nav-item:hover { background: rgba(255, 255, 255, 0.07); color: var(--text); }
+.sidebar .nav-item__label, .sidebar .logo__text, .sidebar .sidebar__note { opacity: 0; transition: opacity var(--t) var(--ease); }
+.sidebar:hover .nav-item__label, .sidebar:focus-within .nav-item__label, .sidebar:hover .logo__text, .sidebar:focus-within .logo__text, .sidebar:hover .sidebar__note, .sidebar:focus-within .sidebar__note { opacity: 1; }
+@media (min-width: 1280px) { html[data-mode='desktop'] .sidebar .nav-item__label, html[data-mode='desktop'] .sidebar .logo__text, html[data-mode='desktop'] .sidebar .sidebar__note { opacity: 1; } }
+.nav-item__icon { flex: none; display: grid; place-items: center; width: 3.55rem; }
+.nav-item.is-active { background: rgba(var(--accent-rgb), 0.2); color: #fff; }
+.nav-item.is-active::before { content: ''; position: absolute; left: -0.6rem; top: 22%; bottom: 22%; width: 0.25rem; border-radius: 0 4px 4px 0; background: var(--accent); }
+.nav-item:focus-visible { background: #fff; color: #0b0d12; outline-offset: 0; outline-color: transparent; box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.35); }
+[data-mode='tv'] .nav-item { height: 3.4rem; font-size: 1.05rem; }
+
+.logo { display: inline-flex; align-items: center; gap: 0.6rem; }
+.logo__mark { width: 2rem; height: 2rem; flex: none; filter: drop-shadow(0 0.2rem 0.8rem rgba(var(--accent-rgb), 0.5)); }
+.logo__text { font-size: 1.35rem; font-weight: 300; letter-spacing: -0.02em; white-space: nowrap; }
+.logo__text b { font-weight: 850; }
+
+/* ========== Top bar ========== */
+.topbar { position: absolute; z-index: 50; top: 0; left: 0; right: 0.65rem; height: var(--topbar-h); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 calc(var(--gutter) - 0.3rem) 0 var(--gutter); pointer-events: none; transition: background var(--t), box-shadow var(--t), backdrop-filter var(--t); }
+.topbar > * { pointer-events: auto; }
+.topbar.is-scrolled { background: color-mix(in srgb, var(--bg) 84%, transparent); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--line); }
+.topbar__left, .topbar__right { display: flex; align-items: center; gap: 0.6rem; }
+.topbar__search { display: flex; align-items: center; gap: 0.7rem; width: min(26rem, 34vw); min-height: 2.7rem; padding: 0 0.9rem; border-radius: var(--r-full); background: rgba(14, 16, 22, 0.6); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--text-2); font-size: var(--fs-sm); transition: background var(--t-fast); }
+.topbar__search:hover { background: rgba(40, 44, 58, 0.7); color: var(--text); }
+.topbar__search span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topbar__profile { display: flex; align-items: center; gap: 0.3rem; padding: 0.2rem 0.5rem 0.2rem 0.2rem; border-radius: var(--r-full); color: var(--text-2); background: rgba(14, 16, 22, 0.6); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.topbar__profile:hover { background: rgba(60, 64, 80, 0.7); color: var(--text); }
+@media (max-width: 1000px) { .topbar__search { width: 2.7rem; padding: 0; justify-content: center; } .topbar__search span, .topbar__search .kbd { display: none; } }
+[data-mode='tv'] .topbar__search { width: 3.2rem; padding: 0; justify-content: center; } [data-mode='tv'] .topbar__search span, [data-mode='tv'] .topbar__search .kbd { display: none; }
+
+/* ========== Shortcuts dialog ========== */
+.shortcuts { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.5rem; }
+.shortcuts dl { margin: 0.6rem 0 0; display: grid; gap: 0.55rem; }
+.shortcuts__row { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.75rem; align-items: center; font-size: var(--fs-sm); }
+.shortcuts dt { display: flex; gap: 0.3rem; flex-wrap: wrap; } .shortcuts dd { margin: 0; color: var(--text-2); }
+
+/* keep focused items clear of the floating mini-player */
+.has-mini .shell__main { scroll-padding-bottom: calc(var(--miniplayer-h) + 3rem); }
